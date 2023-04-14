@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/formulario.css">
+    <link rel="shortcut icon" href="imagenes/logo redondo.png" type="image/x-icon">
+    <title>Crear Usuario</title>
+</head>
+<body>
+    <form id="myForm">
+       <label for="TP">TP:</label>
+        <!--<input type="option" id="nombre" name="nombre" required>-->
+
+        <select name="opcion"  id="tp" class="form" required>
+            <option value="opcion1">   </option>
+            <option value="Profesor">Profesor</option>
+            <option value="Estudiante">Estudiante</option>
+        </select>
+      
+        <label for="Nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+      
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="direccion">Direccion:</label>
+        <input type="text" name="direccion" id="direccion" required>
+
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" required>
+
+        <button type="submit">Enviar</button>
+      </form>
+      
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th>Tipo Persona</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Direccion</th>
+            <th>Edad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se agregarán las filas de la tabla -->
+        </tbody>
+      </table>
+    <script>
+        const form = document.getElementById("myForm");
+        const table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+
+        form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        const tp = form.elements["tp"].value;
+        const nombre = form.elements["nombre"].value;
+        const telefono = form.elements["telefono"].value;
+        const direccion = form.elements["direccion"].value;
+        const edad = form.elements["edad"].value;
+        
+        const row = table.insertRow(-1);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        const cell4 = row.insertCell(3);
+        const cell5 = row.insertCell(4);
+        cell1.innerHTML = tp;
+        cell2.innerHTML = nombre;
+        cell3.innerHTML = telefono;
+        cell4.innerHTML = direccion;
+        cell5.innerHTML = edad;
+        
+        form.reset();
+        });
+
+        function printTable() {
+        const printContents = document.getElementById("myTable").outerHTML;
+        const originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+        }
+    </script>      
+    <button onclick="printTable()">Imprimir tabla</button>
+</body>
+</html>
